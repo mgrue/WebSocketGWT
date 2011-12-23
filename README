@@ -1,0 +1,16 @@
+A simple GWT module to make the WebSocket object from JS available in Java.
+Tested with Chrome 16 and FF8.
+
+Usage:
+
+1. Include the module jar in your project's classpath
+
+2. Add the following line to your module's gwt.xml file:
+	<inherits name='ch.performancebuildings.websocket.WebSocketGWT'/>
+	
+3. In your Java code write:
+	WebSocket ws = new WebSocket("ws://whateverhost");
+	ws.addHandler(...);
+	ws.send("some_message");
+	
+4. Enjoy or complain.
