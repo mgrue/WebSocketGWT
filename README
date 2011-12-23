@@ -1,5 +1,5 @@
 A simple GWT module to make the WebSocket object from JS available in Java.
-Tested with Chrome 16 and FF8.
+Tested with Chrome 16 and FF8. 
 
 Usage:
 
