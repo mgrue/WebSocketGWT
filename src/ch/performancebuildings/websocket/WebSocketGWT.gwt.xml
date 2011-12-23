@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='websocketgwt'>
+	<inherits name='com.google.gwt.user.User' />
+	<inherits name='com.google.gwt.user.theme.clean.Clean' />
+
+	<source path='client' />
+
+	<replace-with class="ch.performancebuildings.websocket.client.impl.WebSocketImpl">
+		<when-type-is
+			class="ch.performancebuildings.websocket.client.impl.AbstractWebSocketImpl" />
+	</replace-with>
+
+	<replace-with class="ch.performancebuildings.websocket.client.impl.WebSocketImplMoz">
+		<when-type-is
+			class="ch.performancebuildings.websocket.client.impl.AbstractWebSocketImpl" />
+		<any>
+			<when-property-is name="user.agent" value="gecko" />
+			<when-property-is name="user.agent" value="gecko1_8" />
+		</any>
+	</replace-with>
+</module>

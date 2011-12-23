@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project default="package">
+
+	<property name="package.name" value="websocketgwt.jar" />
+	<property name="package.file" value="dist/${package.name}" />
+
+	<target name="package">
+		<echo>=== PACKAGE ===</echo>
+		<jar destfile="${package.file}">
+			<fileset dir="src" />
+			<exclude name=".svn" />
+		</jar>
+	</target>
+
+</project>
