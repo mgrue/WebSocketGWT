@@ -40,15 +40,15 @@ public abstract class AbstractWebSocketImpl {
     protected abstract JavaScriptObject createNativeInstance(String url);
 
     protected void onOpen() {
-	for (WebSocketEventHandler h : handlerList) {
-	    h.onStateChange(WebSocketState.Open);
-	}
+	setStateForAll(WebSocketState.Open);
     }
 
     protected void onClose() {
-	for (WebSocketEventHandler h : handlerList) {
-	    h.onStateChange(WebSocketState.Open);
-	}
+	setStateForAll(WebSocketState.Closed);
+    }
+    
+    protected void onError() {
+	setStateForAll(WebSocketState.Error);
     }
 
     protected void onMessage(String message) {
@@ -72,6 +72,10 @@ public abstract class AbstractWebSocketImpl {
 			ws.onclose = function(event) {
 				obj.@ch.performancebuildings.websocket.client.impl.AbstractWebSocketImpl::onClose()()
 			}
+			
+			ws.onerror = function(event) {
+				obj.@ch.performancebuildings.websocket.client.impl.AbstractWebSocketImpl::onError()()
+			}
 
 			ws.onmessage = function(event) {
 				obj.@ch.performancebuildings.websocket.client.impl.AbstractWebSocketImpl::onMessage(Ljava/lang/String;)(event.data)
@@ -80,4 +84,10 @@ public abstract class AbstractWebSocketImpl {
 			this.@ch.performancebuildings.websocket.client.impl.AbstractWebSocketImpl::onFailure(Ljava/lang/String;)(err.type)
 		}
     }-*/;
+    
+    private void setStateForAll(WebSocketState newState) {
+	for (WebSocketEventHandler h : handlerList) {
+	    h.onStateChange(newState);
+	}
+    }
 }
